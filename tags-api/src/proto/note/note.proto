@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package note;
+
+import "google/protobuf/timestamp.proto";
+
+message Note {
+  string id = 1;
+  string title = 2;
+  string content = 3;
+}
+
+service NoteCRUDService {
+  rpc Get (GetRequest) returns (GetResponse);
+  rpc Add (AddRequest) returns (AddResponse);
+  rpc Update (UpdateRequest) returns (UpdateResponse);
+  rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+message GetRequest {
+  string id = 1;
+  string title = 2;
+  string content = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+message GetResponse {
+  repeated Note notes = 1;
+}
+
+message AddRequest {
+  string title = 1;
+  string content = 2;
+}
+
+message AddResponse {
+  Note note = 1;
+}
+
+message UpdateRequest {
+  string id = 1;
+  string title = 2;
+  string content = 3;
+}
+
+message UpdateResponse {
+  Note note = 1;
+}
+
+message DeleteRequest {
+  string id = 1;
+}
+
+message DeleteResponse {
+  Note note = 1;
+}

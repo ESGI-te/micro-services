@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package tag;
+
+import "google/protobuf/timestamp.proto";
+
+
+message Tag {
+  string id = 1;
+  string Name = 2;
+  google.protobuf.Timestamp created_at = 3;
+  google.protobuf.Timestamp updated_at = 4;
+}
+
+service TagCRUDService {
+  rpc Get (GetRequest) returns (GetResponse);
+  rpc Add (AddRequest) returns (AddResponse);
+  rpc Update (UpdateRequest) returns (UpdateResponse);
+  rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+message GetRequest {
+    string id = 1;
+    string name = 2;
+
+}
+
+message GetResponse {
+  repeated Tag tags = 1;
+}
+
+message AddRequest {
+  string name = 1;
+}
+
+message AddResponse {
+  Tag tag = 1;
+}
+
+message UpdateRequest {
+  string id = 1;
+  string name = 2;
+}
+
+message UpdateResponse {
+  Tag tag = 1;
+}
+
+message DeleteRequest {
+  string id = 1;
+}
+
+message DeleteResponse {
+  Tag tag = 1;
+}
