@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Note } from './stubs/note/note';
+import { Note } from '../stubs/note/note';
 import { Prisma } from '@prisma/client';
-import { PrismaService } from './prisma.service';
+import { PrismaService } from '../prisma.service';
 
 @Injectable()
-export class AppService {
+export class NoteService {
   constructor(private prisma: PrismaService) {}
   create(data: Prisma.NoteCreateInput): Promise<Note> {
     return this.prisma.note.create({ data });
