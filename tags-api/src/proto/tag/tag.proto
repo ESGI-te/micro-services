@@ -7,7 +7,7 @@ import "google/protobuf/timestamp.proto";
 
 message Tag {
   string id = 1;
-  string Name = 2;
+  string name = 2;
   google.protobuf.Timestamp created_at = 3;
   google.protobuf.Timestamp updated_at = 4;
 }
@@ -22,7 +22,7 @@ service TagCRUDService {
 message GetRequest {
     string id = 1;
     string name = 2;
-
+    repeated string ids = 3;
 }
 
 message GetResponse {

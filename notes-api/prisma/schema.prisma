@@ -16,6 +16,8 @@ model Note {
   updatedAt DateTime @updatedAt
   title     String   @unique
   content   String
+  tags      String[]
+  userId    String   @map("user_id")
 
   @@map("notes")
 }

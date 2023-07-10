@@ -17,6 +17,7 @@ import {
 import { GrpcMethod, Payload, RpcException } from '@nestjs/microservices';
 import { Metadata } from '@grpc/grpc-js';
 import { GrpcAuthGuard } from 'src/auth/auth.guard';
+import { GRPCUser } from 'src/auth/user.decorator';
 
 @Controller()
 @NoteCRUDServiceControllerMethods()
@@ -79,11 +80,16 @@ export class NoteController implements NoteCRUDServiceController {
       this.handlePrismaErr(error);
     }
   }
+
   @UseGuards(GrpcAuthGuard)
   @GrpcMethod(NOTE_CR_UD_SERVICE_NAME)
-  async add(req: AddRequest): Promise<AddResponse> {
+  async add(
+    @Payload() req: AddRequest,
+    @GRPCUser() jwtUser,
+  ): Promise<AddResponse> {
     try {
-      const note = await this.appService.create(req as any);
+      const data = { ...req, userId: jwtUser.id };
+      const note = await this.appService.create(data as any);
 
       return { note };
     } catch (error) {
