@@ -10,12 +10,14 @@ export interface Note {
   id?: string;
   title?: string;
   content?: string;
+  tags?: string[];
 }
 
 export interface GetRequest {
   id?: string;
   title?: string;
   content?: string;
+  tags?: string[];
   createdAt?: Timestamp;
   updatedAt?: Timestamp;
 }
@@ -27,6 +29,7 @@ export interface GetResponse {
 export interface AddRequest {
   title?: string;
   content?: string;
+  tags?: string[];
 }
 
 export interface AddResponse {
@@ -37,6 +40,7 @@ export interface UpdateRequest {
   id?: string;
   title?: string;
   content?: string;
+  tags?: string[];
 }
 
 export interface UpdateResponse {

@@ -8,7 +8,7 @@ export const protobufPackage = "tag";
 
 export interface Tag {
   id?: string;
-  Name?: string;
+  name?: string;
   createdAt?: Timestamp;
   updatedAt?: Timestamp;
 }
@@ -16,6 +16,7 @@ export interface Tag {
 export interface GetRequest {
   id?: string;
   name?: string;
+  ids?: string[];
 }
 
 export interface GetResponse {
